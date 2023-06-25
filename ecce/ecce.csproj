@@ -12,9 +12,15 @@
     <PackageReference Include="Emgu.CV.Bitmap" Version="4.6.0.5131" />
     <PackageReference Include="Emgu.CV.runtime.windows" Version="4.6.0.5131" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+    <PackageReference Include="Tesseract" Version="5.2.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Properties\ProjPath.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ProjPath.settings</DependentUpon>
+    </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -33,15 +39,29 @@
     <None Update="config_area\test.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Properties\ProjPath.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>ProjPath.Designer.cs</LastGenOutput>
+    </None>
     <None Update="tessdata\deu.traineddata">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="tessdata\deu_frak.traineddata">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="tessdata\deu_Fra_man.traineddata">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="tessdata\deu_Fra_man2.traineddata">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
     <None Update="tessdata\eng.traineddata">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="settings_batch\" />
   </ItemGroup>
 
 </Project>
