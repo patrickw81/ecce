@@ -271,9 +271,9 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(109, 699);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(45, 15);
+            this.label7.Size = new System.Drawing.Size(105, 15);
             this.label7.TabIndex = 17;
-            this.label7.Text = "Sorting";
+            this.label7.Text = "Sort Segmentation";
             // 
             // Box_Sorting
             // 

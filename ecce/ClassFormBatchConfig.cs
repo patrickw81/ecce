@@ -53,9 +53,15 @@ namespace ecce
 
 
 
-        public ClassFormBatchConfig(int ivall, int resize_fac, int bin_prm, int line_eli_prm_w, int line_eli_prm_h, int seg_prm_w, int seg_prm_h, int seg_prm_des,int blackdotsparam)
+        public ClassFormBatchConfig(int ivall, int resize_fac, int bin_prm, int line_eli_prm_w, int line_eli_prm_h, int seg_prm_w, int seg_prm_h, int seg_prm_des,int blackdotsparam, int imgwdht,int imghgt)
         {
+            
             InitializeComponent();
+
+            Num_param_seg_w.Maximum = (int)imgwdht/2;
+            Num_param_seg_h.Maximum = (int)imghgt /2;
+
+
             FielListAreas = GetAreaList();
             Num_interva.Value= ivall;
             Num_resize_fac.Value= resize_fac;

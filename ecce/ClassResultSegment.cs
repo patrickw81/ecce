@@ -121,10 +121,15 @@ namespace ecce
             xmldoc.AppendChild(docNode);
             XmlNode root = xmldoc.CreateElement("root");
             xmldoc.AppendChild(root);
+            XmlAttribute Type = xmldoc.CreateAttribute("Type");
+            Type.Value = "Segmented";
+            root.Attributes!.SetNamedItem(Type);
+
             for (int i = 0; i < ListResultSegmentedAreas.Count; i++)
             {
                 XmlNode Object = xmldoc.CreateElement("Object");
                 root.AppendChild(Object);
+                XmlNode ImgData = xmldoc.CreateElement("ImgData");
                 XmlNode Path = xmldoc.CreateElement("Path");
                 XmlNode Filename = xmldoc.CreateElement("Filename");
                 XmlNode SHA256 = xmldoc.CreateElement("SHA256");
@@ -135,15 +140,16 @@ namespace ecce
                 Filename.AppendChild(xmldoc.CreateTextNode(ListResultSegmentedAreas[i].FileName));
                 Width.AppendChild(xmldoc.CreateTextNode(ListResultSegmentedAreas[i].ImgWidth.ToString()));
                 Height.AppendChild(xmldoc.CreateTextNode(ListResultSegmentedAreas[i].ImgHeight.ToString()));
-                SHA256.AppendChild(xmldoc.CreateTextNode(ListResultSegmentedAreas[i].StrSha512));
-                SHA512.AppendChild(xmldoc.CreateTextNode(ListResultSegmentedAreas[i].StrSha256));
-                Object.AppendChild(Path);
-                Object.AppendChild(Filename);
-                Object.AppendChild(Width);
-                Object.AppendChild(Height);
-                Object.AppendChild(SHA256);
-                Object.AppendChild(SHA512);
-               
+                SHA256.AppendChild(xmldoc.CreateTextNode(ListResultSegmentedAreas[i].StrSha256));
+                SHA512.AppendChild(xmldoc.CreateTextNode(ListResultSegmentedAreas[i].StrSha512));
+                ImgData.AppendChild(Path);
+                ImgData.AppendChild(Filename);
+                ImgData.AppendChild(Width);
+                ImgData.AppendChild(Height);
+                ImgData.AppendChild(SHA256);
+                ImgData.AppendChild(SHA512);
+                Object.AppendChild(ImgData);
+                XmlNode TxtSegments = xmldoc.CreateElement("TxtSegments");
                 for (int y = 0; y < ListResultSegmentedAreas[i].DictTxtperArea.Count; y++)
                 {
                     var item = ListResultSegmentedAreas[i].DictTxtperArea.ElementAt(y);
@@ -164,8 +170,9 @@ namespace ecce
                     HEIGHT.Value = ListResultSegmentedAreas[i].Rectangles[y].Height.ToString();
                     Child.Attributes!.SetNamedItem(HEIGHT);
                     Child.AppendChild(xmldoc.CreateTextNode(item.Value));
-                    Object.AppendChild(Child);
+                    TxtSegments.AppendChild(Child);
                 }
+                Object.AppendChild(TxtSegments);
             }
             return xmldoc.OuterXml;
         }
@@ -193,7 +200,7 @@ namespace ecce
                 for (int y = 0; y < ListResultSegmentedAreas[i].DictTxtperArea.Count; y++)
                 {
                     var item = ListResultSegmentedAreas[i].DictTxtperArea.ElementAt(y);
-                    str = str + item.Key + " = " + item.Value + "\r\n";
+                    str = str + "Segment " + item.Key + " = " + item.Value + "\r\n";
                 }
             }
             return str;

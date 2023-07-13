@@ -132,10 +132,15 @@ namespace ecce
             xmldoc.AppendChild(docNode);
             XmlNode root = xmldoc.CreateElement("root");
             xmldoc.AppendChild(root);
+            XmlAttribute Type = xmldoc.CreateAttribute("Type");
+            Type.Value = "Areas";
+            root.Attributes!.SetNamedItem(Type);
+
             for (int i = 0; i < ListResultSegmentedAreas.Count; i++)
             {
                 XmlNode Object = xmldoc.CreateElement("Object");
                 root.AppendChild(Object);
+                XmlNode ImgData = xmldoc.CreateElement("ImgData");
                 XmlNode Path = xmldoc.CreateElement("Path");
                 XmlNode Filename = xmldoc.CreateElement("Filename");
                 XmlNode SHA256 = xmldoc.CreateElement("SHA256");
@@ -148,19 +153,22 @@ namespace ecce
                 Height.AppendChild(xmldoc.CreateTextNode(ListResultSegmentedAreas[i].ImgHeight.ToString()));
                 SHA256.AppendChild(xmldoc.CreateTextNode(ListResultSegmentedAreas[i].StrSha256));
                 SHA512.AppendChild(xmldoc.CreateTextNode(ListResultSegmentedAreas[i].StrSha512));
-                Object.AppendChild(Path);
-                Object.AppendChild(Filename);
-                Object.AppendChild(Width);
-                Object.AppendChild(Height);
-                Object.AppendChild(SHA256);
-                Object.AppendChild(SHA512);
+                ImgData.AppendChild(Path);
+                ImgData.AppendChild(Filename);
+                ImgData.AppendChild(Width);
+                ImgData.AppendChild(Height);
+                ImgData.AppendChild(SHA256);
+                ImgData.AppendChild(SHA512);
+                Object.AppendChild(ImgData);
+                XmlNode Segments = xmldoc.CreateElement("Segments");
                 for (int y =0; y< ListResultSegmentedAreas[i].DictTxtperArea.Count; y++)
                 {
                     var item = ListResultSegmentedAreas[i].DictTxtperArea.ElementAt(y);
                     XmlNode Child = xmldoc.CreateElement(item.Key);
                     Child.AppendChild(xmldoc.CreateTextNode(item.Value));
-                    Object.AppendChild(Child);
+                    Segments.AppendChild(Child);
                 }
+                Object.AppendChild(Segments);
             }
             return xmldoc.OuterXml;
         }

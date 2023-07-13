@@ -35,8 +35,8 @@ namespace ecce
                     {
                         lasttitle = ArchiveColumn.TitleFile;
                     }
-                    ArchiveColumn = new ClassCatalogueArchiveCol();
                     LstArchiveColumn!.Add(ArchiveColumn);
+                    ArchiveColumn = new ClassCatalogueArchiveCol();
                     myline++;
                 }
                 await Task.Run(() =>
@@ -48,6 +48,7 @@ namespace ecce
                 });
                 x++;
             } while (x < myimage.ListSegmentationBox.Count);
+            LstArchiveColumn!.Add(ArchiveColumn);
             return "sucess";
         }
 
@@ -68,7 +69,7 @@ namespace ecce
         {
             TextBox mytxtbox = new () {
                 Multiline = true,
-                Location = new Point(1, (LstArchiveColumn!.Count + 1) * 60 + 50),
+                Location = new Point(1, (LstArchiveColumn!.Count + 1) * 60 + 220),
                 ScrollBars = ScrollBars.Vertical,
                 Size = new Size(1200, 300),
                 Text = GetCsv(),
@@ -76,7 +77,7 @@ namespace ecce
             TextBox myxml = new () {
                 Multiline = true,
                 ScrollBars = ScrollBars.Vertical,
-                Location = new System.Drawing.Point(1, (LstArchiveColumn.Count + 1) * 60 + 380),
+                Location = new System.Drawing.Point(1, (LstArchiveColumn.Count + 1) * 60 + 580),
                 Size = new System.Drawing.Size(1200, 300)
             };
             string xml_form = GetXml();
@@ -94,7 +95,7 @@ namespace ecce
                 Height = (LstArchiveColumn!.Count + 1) * 60,
                 Name = "Table_Archive_Catalogue",
                 TabIndex = 1,
-                Location = new System.Drawing.Point(1, 50)
+                Location = new System.Drawing.Point(1, 200)
              };
             GetTableHEader(ref mytable);
             GetTableBody(ref mytable);
@@ -119,7 +120,6 @@ namespace ecce
             for (int i = 0; i < 1 + 1; i++)
             {
                 mytable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60));
-
             }
             for (int i = 0; i < 9; i++)
             {
@@ -165,6 +165,10 @@ namespace ecce
             xmldoc.AppendChild(docNode);
             XmlNode root = xmldoc.CreateElement("root");
             xmldoc.AppendChild(root);
+            XmlAttribute Type = xmldoc.CreateAttribute("Type");
+            Type.Value = "ArchiveCatalogue";
+            root.Attributes!.SetNamedItem(Type);
+
             for (int i = 0; i < LstArchiveColumn!.Count; i++)
             {
                 XmlNode Object = xmldoc.CreateElement("Object");
@@ -197,7 +201,6 @@ namespace ecce
                 Object.AppendChild(Remarks);
                 Object.AppendChild(Old_id);
             }
-            //Debug.WriteLine(xmldoc.OuterXml);
             return xmldoc.OuterXml;
         }
 
@@ -223,7 +226,7 @@ namespace ecce
         {
             Button button_save_txt = new()
             {
-                Location = new System.Drawing.Point(20, 98),
+                Location = new System.Drawing.Point(20, 50),
                 Size = new System.Drawing.Size(91, 30),
                 Text = "Export as Text",
                 Name = "txt",
@@ -234,7 +237,7 @@ namespace ecce
 
             Button button_save_xml = new()
             {
-                Location = new System.Drawing.Point(140, 98),
+                Location = new System.Drawing.Point(140, 50),
                 Size = new System.Drawing.Size(91, 30),
                 Text = "Export as XML",
                 Name = "xml",
@@ -244,7 +247,7 @@ namespace ecce
 
             Button button_save_csv = new()
             {
-                Location = new System.Drawing.Point(240, 98),
+                Location = new System.Drawing.Point(240, 50),
                 Size = new System.Drawing.Size(91, 30),
                 Text = "Export as CSV",
                 Name = "csv",

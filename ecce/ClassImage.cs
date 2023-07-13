@@ -159,7 +159,7 @@ namespace ecce
             ImgBinarized = ImgProcess!.Convert<Gray, byte>().ThresholdBinary(new Gray(min), new Gray(255));
             CheckBinarized = true;
         }
-
+         
         // Remove Line
         public Image<Gray, Byte> RemoveLine(int _hlength, int _vlength)
         {
@@ -173,9 +173,7 @@ namespace ecce
             CvInvoke.Erode(hProfile, hProfile, kernelH, new Point(-1, -1), 1, BorderType.Default, new MCvScalar(255));
             CvInvoke.Dilate(ImgBinarized, vProfile, kernelV, new Point(-1, -1), 1, BorderType.Default, new MCvScalar(255));
             CvInvoke.Erode(vProfile, vProfile, kernelV, new Point(-1, -1), 1, BorderType.Default, new MCvScalar(255));
-
             var megedImage = vProfile.ToImage<Gray, byte>().And(hProfile.ToImage<Gray, byte>());
-
             Image<Gray, Byte> imgmanipulate = ImgBinarized.Or(megedImage.ThresholdBinaryInv(new Gray(245), new Gray(255)).Dilate(1));
             return imgmanipulate;
         }
@@ -196,8 +194,7 @@ namespace ecce
             {
                 var bbox = CvInvoke.BoundingRectangle(contours[i]);
                
-            }
-           
+            }         
             for (int i = 0; i < contours.Size; i++)
             {
                 VectorOfPoint contour = contours[i];
@@ -219,7 +216,6 @@ namespace ecce
             int dilationSize = 5;
             Mat element = CvInvoke.GetStructuringElement(ElementShape.Rectangle, new Size(dilationSize, dilationSize), new Point(-1, -1));
             CvInvoke.Erode(mask, mask, element, new Point(-1, -1), 1, BorderType.Default, new MCvScalar());
-
             CvInvoke.BitwiseAnd(test, mask, test);
             CvInvoke.BitwiseAnd(test, whiteImage, whiteImage, mask);
             ImgBinarized = whiteImage;
@@ -333,7 +329,7 @@ namespace ecce
         //Image Segmentation
         //
         //
-        public Image<Bgr, byte> SetSegmentation(int width=62, int height=52, int destroy_rec=1000)
+        public Image<Bgr, byte> SetSegmentation(int height = 52, int width=62,  int destroy_rec=1000)
         {
             try
             {
@@ -341,7 +337,7 @@ namespace ecce
                 ListSegmentationBox.Clear();
                 Contours.Clear();
                
-                Mat kernel = Mat.Ones(height, width, DepthType.Cv8U, 1);
+                Mat kernel = Mat.Ones(width, height, DepthType.Cv8U, 1);
 
                 var binary = ImgBinarized.MorphologyEx(MorphOp.Erode, kernel, new Point(-1, -1), 1, BorderType.Default, new MCvScalar(0, 0, 0));
                 CvInvoke.BitwiseNot(binary, binary);
@@ -532,6 +528,7 @@ namespace ecce
         {
             ListSegmentationBox = ListSegmentationBox.OrderBy(x => x.Rect.Y).ToList();
         }
+
         public Image<Gray, Byte> GetSegmentImageWithMask(int idx)
         {
             SelecteAreas.LstAreas = SelecteAreas.LstAreas.OrderBy(x => x.Rect.Y).ThenBy(y => y.Rect.X).ToList();
@@ -546,6 +543,7 @@ namespace ecce
             CvInvoke.BitwiseNot(imgroi, imgroi);
             return imgroi;
         }
+
         public Image<Gray, Byte> GetSegmentationWithoutMask(int idx)
         {
             Image<Gray, Byte> imgroi = ImgBinarized.Copy();
@@ -557,7 +555,6 @@ namespace ecce
         {
             Image<Gray, Byte> imgroi = ImgBinarized.Copy();
             imgroi.ROI = SelecteAreas.LstAreas[idx].Rect;
-           
             //CvInvoke.BitwiseNot(imgroi, imgroi);
             return imgroi;
         }

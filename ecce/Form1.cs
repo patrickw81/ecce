@@ -300,10 +300,12 @@ namespace ecce
             var frequencyArray = frequencies.ToArray();
             int b = (int)(Math.Round(frequencyArray[(int)(frequencyArray.Length * 0.125)].Value));
             int c = (int)(a + b) / 2;
-
+            Debug.WriteLine(c);
             Image.ImgBinarized = Image.RemoveLine(c, c);
+            pictureBox1.Image= Image.ImgBinarized.ToBitmap();
             Image.ImgProcess = Image.ImgBinarized.Convert<Bgr, Byte>().Copy();
         }
+
 
         // Strong Line
         private void MenuStrongLinesClick(object sender, EventArgs e)
@@ -324,17 +326,19 @@ namespace ecce
         private void MenuSegmentationBlockClick(object sender, EventArgs e)
         {
             if (Image == null) return;
-
-            pictureBox1.Image = Image.SetSegmentation(52, 62).ToBitmap();
-            RefreshSegmenationInfoBox(52, 62, 1000);
+            int w = (int)Image.ActualWidth/45;
+            int h = (int)Image.ActualHeight/54;
+            pictureBox1.Image = Image.SetSegmentation(w,h).ToBitmap();
+            RefreshSegmenationInfoBox(w,h, 1000);
         }
 
         //Segmentation-Line
         private void MenuSegmentationLineAutoClick(object sender, EventArgs e)
         {
             if (Image == null) return;
-            pictureBox1.Image = Image.SetSegmentation(3, 30).ToBitmap();
-            RefreshSegmenationInfoBox(3, 30, 1000);
+            int w = (int)Image.ActualWidth / 10;
+            pictureBox1.Image = Image.SetSegmentation(w,3).ToBitmap();
+            RefreshSegmenationInfoBox(3, w, 1000);
         }
 
         // Segmentation-Parameter
@@ -534,6 +538,7 @@ namespace ecce
             {
                 splitContainer1.Panel2.Controls.Clear();
             }
+            splitContainer1.Panel2.Controls.Clear();
             Task mytask = RunOcrTxtOnly(false);
             await mytask;
         }
@@ -570,10 +575,16 @@ namespace ecce
                     throw new Exception(e.Message);
                 }
             }
+           
+            (Button button_save_txt, Button button_save_xml, Button button_save_csv) = ResultTxtOnly!.GetButtons();
+            splitContainer1.Panel2.Controls.Add(button_save_txt);
+            splitContainer1.Panel2.Controls.Add(button_save_xml);
+            splitContainer1.Panel2.Controls.Add(button_save_csv);
             splitContainer1.Panel2.Controls.Add(ResultTxtOnly.GetResultasTable());
         }
         private async void MenuTessSegmentedClick(object sender, EventArgs e)
         {
+            splitContainer1.Panel2.Controls.Clear();
             ResultSegment = new(new ClassOcrTess(pagmode.Text, tesss_mdl.Text, combo_enginemod.Text));
             Task<string> myTaks = ResultSegment.RunOcr(Image!);
             await myTaks;
@@ -590,6 +601,7 @@ namespace ecce
 
         private async void MenuRunOcrTxtOnlyChatGptClick(object sender, EventArgs e)
         {
+            splitContainer1.Panel2.Controls.Clear();
             if (splitContainer1.Panel2.HasChildren == true)
             {
                 splitContainer1.Panel2.Controls.Clear();
@@ -608,6 +620,7 @@ namespace ecce
         //Archiv Katalog
         private async void MenuCatalogueArchivTemplateA(object sender, EventArgs e)
         {
+            splitContainer1.Panel2.Controls.Clear();
             if (Image!.ListSegmentationBox.Count == 0)
             {
                 return;
@@ -626,8 +639,11 @@ namespace ecce
 
             Task<string> myTaks = ResultCatalogueArchive.RunOcr(Image);
             await myTaks;
-
+            (Button button_save_txt, Button button_save_xml, Button button_save_csv) = ResultCatalogueArchive!.GetButtons();
             (TableLayoutPanel mytable, TextBox txt_csv, TextBox txt_xml) = ResultCatalogueArchive.GetResultasTable(splitContainer1.Panel2.Width, splitContainer1.Panel2.Height);
+            splitContainer1.Panel2.Controls.Add(button_save_txt);
+            splitContainer1.Panel2.Controls.Add(button_save_xml);
+            splitContainer1.Panel2.Controls.Add(button_save_csv);
             splitContainer1.Panel2.Controls.Add(mytable);
             splitContainer1.Panel2.Controls.Add(txt_csv);
             splitContainer1.Panel2.Controls.Add(txt_xml);
@@ -638,6 +654,7 @@ namespace ecce
 
         private async void MenuSoftCutClick(object sender, EventArgs e)
         {
+            splitContainer1.Panel2.Controls.Clear();
             if (splitContainer1.Panel2.HasChildren == true)
             {
                 splitContainer1.Panel2.Controls.Clear();
@@ -648,10 +665,16 @@ namespace ecce
             ResultAreas = new ClassResultAreas(new ClassOcrTess(pagmode.Text, tesss_mdl.Text, combo_enginemod.Text));
             Task<string> myTaks = ResultAreas.RunOcr(Image, 0);
             await myTaks;
+            (Button button_save_txt, Button button_save_xml, Button button_save_csv) = ResultAreas!.GetButtons();
+            splitContainer1.Panel2.Controls.Clear();
+            splitContainer1.Panel2.Controls.Add(button_save_txt);
+            splitContainer1.Panel2.Controls.Add(button_save_xml);
+            splitContainer1.Panel2.Controls.Add(button_save_csv);
         }
 
         private async void MenuHardCutClick(object sender, EventArgs e)
         {
+            splitContainer1.Panel2.Controls.Clear();
             if (splitContainer1.Panel2.HasChildren == true)
             {
                 splitContainer1.Panel2.Controls.Clear();
@@ -690,7 +713,7 @@ namespace ecce
                 seg_prm_w = Int32.Parse(InfoSegmentationWidth.Text);
                 seg_des = Int32.Parse(InfoSegmentationDestruction.Text);
             }
-            BatchConfiguration = new ClassFormBatchConfig(Int32.Parse(interval_box.Text), Image.RoundResizedFactor, Image.ParamBinarized, Image.ParamVerticalDestruction, Image.ParamHorizontalDestruction, seg_prm_w, seg_prm_h, seg_des, Image.ParamBlackDotsDestruction);
+            BatchConfiguration = new ClassFormBatchConfig(Int32.Parse(interval_box.Text), Image.RoundResizedFactor, Image.ParamBinarized, Image.ParamVerticalDestruction, Image.ParamHorizontalDestruction, seg_prm_w, seg_prm_h, seg_des, Image.ParamBlackDotsDestruction, Image.ActualWidth,Image.ActualHeight);
             BatchConfiguration.Applystartbatch += this.StarBatch;
             splitContainer1.Panel2.Controls.Add(BatchConfiguration);
         }
@@ -854,8 +877,6 @@ namespace ecce
 
             await Task.Delay(1000);
             return true;
-        }
-
-       
+        } 
     }
 }

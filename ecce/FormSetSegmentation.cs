@@ -19,9 +19,15 @@ namespace ecce
         public FormSetSegmentation(Form1 form, ClassImage img_cls, int height, int width, int destruct=1000)
         {
             InitializeComponent();
+            trackBar_height.Maximum = (int)img_cls.ActualHeight/2;
+            trackBar_width.Maximum = (int)img_cls.ActualWidth/2;
+            numericUpDownHght.Maximum = trackBar_height.Maximum;
+            numericUpDownWdth.Maximum = trackBar_width.Maximum;
             trackBar_height.Value = height;
             trackBar_width.Value = width;
             numericUpDown1.Value = destruct;
+            numericUpDownHght.Value = height;
+            numericUpDownWdth.Value = width;
             ClassForm = form;
             MyImage = img_cls;
         }

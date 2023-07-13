@@ -77,7 +77,6 @@
             this.tesseractToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.withoutFormatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.runOCROnlyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.runOCRChatgptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.segmentedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.archiveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.templateAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -202,21 +201,21 @@
             // resizeToolStripMenuItem
             // 
             this.resizeToolStripMenuItem.Name = "resizeToolStripMenuItem";
-            this.resizeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.resizeToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.resizeToolStripMenuItem.Text = "Resize";
             this.resizeToolStripMenuItem.Click += new System.EventHandler(this.MenuResizeClick);
             // 
             // noiseReductionToolStripMenuItem
             // 
             this.noiseReductionToolStripMenuItem.Name = "noiseReductionToolStripMenuItem";
-            this.noiseReductionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.noiseReductionToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.noiseReductionToolStripMenuItem.Text = "Noise Reduction";
             this.noiseReductionToolStripMenuItem.Click += new System.EventHandler(this.MenuNoiseReductionClick);
             // 
             // sharpenToolStripMenuItem
             // 
             this.sharpenToolStripMenuItem.Name = "sharpenToolStripMenuItem";
-            this.sharpenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sharpenToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.sharpenToolStripMenuItem.Text = "Sharpen & Blur";
             this.sharpenToolStripMenuItem.Click += new System.EventHandler(this.MenuSharpenClick);
             // 
@@ -233,21 +232,21 @@
             // otsuToolStripMenuItem
             // 
             this.otsuToolStripMenuItem.Name = "otsuToolStripMenuItem";
-            this.otsuToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.otsuToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.otsuToolStripMenuItem.Text = "Otsu";
             this.otsuToolStripMenuItem.Click += new System.EventHandler(this.MenuOtsuBinarizeClick);
             // 
             // adoptedToolStripMenuItem
             // 
             this.adoptedToolStripMenuItem.Name = "adoptedToolStripMenuItem";
-            this.adoptedToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.adoptedToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.adoptedToolStripMenuItem.Text = "Adopted";
             this.adoptedToolStripMenuItem.Click += new System.EventHandler(this.MenuAdoptedBinarizeClick);
             // 
             // grayToolStripMenuItem
             // 
             this.grayToolStripMenuItem.Name = "grayToolStripMenuItem";
-            this.grayToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.grayToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.grayToolStripMenuItem.Text = "With Paramteter";
             this.grayToolStripMenuItem.Click += new System.EventHandler(this.MenuParamBinarizedClick);
             // 
@@ -354,28 +353,28 @@
             // blockTxtToolStripMenuItem
             // 
             this.blockTxtToolStripMenuItem.Name = "blockTxtToolStripMenuItem";
-            this.blockTxtToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.blockTxtToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.blockTxtToolStripMenuItem.Text = "Block";
             this.blockTxtToolStripMenuItem.Click += new System.EventHandler(this.MenuSegmentationBlockClick);
             // 
             // lineToolStripMenuItem
             // 
             this.lineToolStripMenuItem.Name = "lineToolStripMenuItem";
-            this.lineToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.lineToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.lineToolStripMenuItem.Text = "Line";
             this.lineToolStripMenuItem.Click += new System.EventHandler(this.MenuSegmentationLineAutoClick);
             // 
             // parametersToolStripMenuItem
             // 
             this.parametersToolStripMenuItem.Name = "parametersToolStripMenuItem";
-            this.parametersToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.parametersToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.parametersToolStripMenuItem.Text = "Parameters";
             this.parametersToolStripMenuItem.Click += new System.EventHandler(this.MenuSegmentationParameterClick);
             // 
             // addShowClusterToolStripMenuItem
             // 
             this.addShowClusterToolStripMenuItem.Name = "addShowClusterToolStripMenuItem";
-            this.addShowClusterToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.addShowClusterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.addShowClusterToolStripMenuItem.Text = "Show Column Line";
             this.addShowClusterToolStripMenuItem.Click += new System.EventHandler(this.MenutShwoColumnLineClick);
             // 
@@ -387,7 +386,7 @@
             this.pararaphToolStripMenuItem,
             this.blockToolStripMenuItem});
             this.tesseractSegToolStripMenuItem.Name = "tesseractSegToolStripMenuItem";
-            this.tesseractSegToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.tesseractSegToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.tesseractSegToolStripMenuItem.Text = "Tesseract_Seg";
             // 
             // wordToolStripMenuItem
@@ -425,27 +424,27 @@
             this.yToolStripMenuItem,
             this.leftToRightToolStripMenuItem});
             this.sortToolStripMenuItem.Name = "sortToolStripMenuItem";
-            this.sortToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.sortToolStripMenuItem.Text = "Sort";
+            this.sortToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sortToolStripMenuItem.Text = "Sort Seg";
             // 
             // xThenYToolStripMenuItem
             // 
             this.xThenYToolStripMenuItem.Name = "xThenYToolStripMenuItem";
-            this.xThenYToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.xThenYToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.xThenYToolStripMenuItem.Text = "X then Y";
             this.xThenYToolStripMenuItem.Click += new System.EventHandler(this.MenuSortXthenYClick);
             // 
             // yToolStripMenuItem
             // 
             this.yToolStripMenuItem.Name = "yToolStripMenuItem";
-            this.yToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.yToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.yToolStripMenuItem.Text = "Y";
             this.yToolStripMenuItem.Click += new System.EventHandler(this.MenuSortYClick);
             // 
             // leftToRightToolStripMenuItem
             // 
             this.leftToRightToolStripMenuItem.Name = "leftToRightToolStripMenuItem";
-            this.leftToRightToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.leftToRightToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.leftToRightToolStripMenuItem.Text = "left to right";
             this.leftToRightToolStripMenuItem.Click += new System.EventHandler(this.MenuSortLikeTableClick);
             // 
@@ -510,8 +509,7 @@
             // withoutFormatToolStripMenuItem
             // 
             this.withoutFormatToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.runOCROnlyToolStripMenuItem,
-            this.runOCRChatgptToolStripMenuItem});
+            this.runOCROnlyToolStripMenuItem});
             this.withoutFormatToolStripMenuItem.Name = "withoutFormatToolStripMenuItem";
             this.withoutFormatToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.withoutFormatToolStripMenuItem.Text = "Run Without Format";
@@ -519,16 +517,9 @@
             // runOCROnlyToolStripMenuItem
             // 
             this.runOCROnlyToolStripMenuItem.Name = "runOCROnlyToolStripMenuItem";
-            this.runOCROnlyToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.runOCROnlyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.runOCROnlyToolStripMenuItem.Text = "Run OCR only";
             this.runOCROnlyToolStripMenuItem.Click += new System.EventHandler(this.MenuRunOcrTxtOnlyClick);
-            // 
-            // runOCRChatgptToolStripMenuItem
-            // 
-            this.runOCRChatgptToolStripMenuItem.Name = "runOCRChatgptToolStripMenuItem";
-            this.runOCRChatgptToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
-            this.runOCRChatgptToolStripMenuItem.Text = "Run OCR + Chatgpt";
-            this.runOCRChatgptToolStripMenuItem.Click += new System.EventHandler(this.MenuRunOcrTxtOnlyChatGptClick);
             // 
             // segmentedToolStripMenuItem
             // 
@@ -630,7 +621,6 @@
             // pictureBox2
             // 
             this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
             this.pictureBox2.Location = new System.Drawing.Point(0, 0);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(1200, 902);
@@ -725,7 +715,7 @@
             this.txt_vert_des.Name = "txt_vert_des";
             this.txt_vert_des.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
             this.txt_vert_des.ReadOnly = true;
-            this.txt_vert_des.Size = new System.Drawing.Size(21, 25);
+            this.txt_vert_des.Size = new System.Drawing.Size(19, 25);
             // 
             // toolStripLabel7
             // 
@@ -985,7 +975,6 @@
         private ToolStripLabel toolStripLabel8;
         private ToolStripComboBox interval_box;
         private ToolStripMenuItem runOCROnlyToolStripMenuItem;
-        private ToolStripMenuItem runOCRChatgptToolStripMenuItem;
         private ToolStripLabel toolStripLabel9;
         private ToolStripTextBox InfoSegmentationDestruction;
         private ToolStripMenuItem showAreasToolStripMenuItem;

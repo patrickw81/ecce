@@ -64,7 +64,7 @@ namespace ecce
                 ColumnCount = 2,
                 RowCount = 8,
                 Size = new System.Drawing.Size(width, heigth),
-                Location = new System.Drawing.Point(1, 50)
+                Location = new System.Drawing.Point(20, 100)
             };
             mytable.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 200));
             mytable.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 800));
@@ -119,7 +119,6 @@ namespace ecce
             my_txt[13].Text = ResultPage.Place;
             my_txt[14].Text = ResultPage.Person;
             my_txt[15].Text = ResultPage.Classifikation;
-
             return mytable;
         }
        
@@ -182,9 +181,15 @@ namespace ecce
             xmldoc.AppendChild(docNode);
             XmlNode root = xmldoc.CreateElement("root");
             xmldoc.AppendChild(root);
+            XmlAttribute Type = xmldoc.CreateAttribute("Type");
+            Type.Value = "TxtOnly";
+            root.Attributes!.SetNamedItem(Type);
+
+
             for (int i = 0; i < LstResultTxtOnly.Count; i++) {
 
                 XmlNode Object = xmldoc.CreateElement("Object");
+                XmlNode ImgData = xmldoc.CreateElement("ImgData");
                 XmlNode Path = xmldoc.CreateElement("Path");
                 XmlNode Filename = xmldoc.CreateElement("Filename");
                 XmlNode SHA256 = xmldoc.CreateElement("SHA256");
@@ -192,28 +197,31 @@ namespace ecce
                 XmlNode Width = xmldoc.CreateElement("Width");
                 XmlNode Height = xmldoc.CreateElement("Height");
                 XmlNode Text = xmldoc.CreateElement("Text");
+                XmlNode TextPlain = xmldoc.CreateElement("TextPlain");
+                XmlNode TextFormated = xmldoc.CreateElement("TextFormated");
                 Path.AppendChild(xmldoc.CreateTextNode(LstResultTxtOnly[i].ImgPath));
                 Filename.AppendChild(xmldoc.CreateTextNode(LstResultTxtOnly[i].FileName));
                 Width.AppendChild(xmldoc.CreateTextNode(LstResultTxtOnly[i].ImgWidth.ToString()));
                 Height.AppendChild(xmldoc.CreateTextNode(LstResultTxtOnly[i].ImgHeight.ToString()));
                 SHA256.AppendChild(xmldoc.CreateTextNode(LstResultTxtOnly[i].StrSha256));
                 SHA512.AppendChild(xmldoc.CreateTextNode(LstResultTxtOnly[i].StrSha512));
-                Text.AppendChild(xmldoc.CreateTextNode(LstResultTxtOnly[i].Text));
+                TextPlain.AppendChild(xmldoc.CreateTextNode(LstResultTxtOnly[i].Text));
                 root.AppendChild(Object);
-                Object.AppendChild(Path);
-                Object.AppendChild(Filename);
-                Object.AppendChild(Width);
-                Object.AppendChild(Height);
-                Object.AppendChild(SHA256);
-                Object.AppendChild(SHA512);
-                Object.AppendChild(Text);
+                ImgData.AppendChild(Path);
+                ImgData.AppendChild(Filename);
+                ImgData.AppendChild(Width);
+                ImgData.AppendChild(Height);
+                ImgData.AppendChild(SHA256);
+                ImgData.AppendChild(SHA512);
+                Object.AppendChild(ImgData);
+                Text.AppendChild(TextPlain);
 
                 string[] block = LstResultTxtOnly[i].Form_text.Split("\r\n\r\n");
 
                 for (int y = 0; y < block.Length; y++)
                 {
                     XmlNode Block = xmldoc.CreateElement("Block");
-                    Object.AppendChild(Block);
+                    TextFormated.AppendChild(Block);
                     string[] lines = block[y].Split("\r\n");
                     for (int u = 0; u < lines.Length; u++)
                     {
@@ -223,10 +231,12 @@ namespace ecce
                     }
 
                 }
-
+                Text.AppendChild(TextFormated);
+                Object.AppendChild(Text);
             }
             return xmldoc.OuterXml;
         }
+
         private string GetCsv()
         {
             string str = "Path q!Z SHA256 q!Z FileName q!Z Text \r\n";
@@ -240,8 +250,8 @@ namespace ecce
         public (Button, Button, Button) GetButtons()
         {
             Button button_save_txt = new() {
-                Location = new System.Drawing.Point(20, 98),
-                Size = new System.Drawing.Size(91, 30),
+                Location = new System.Drawing.Point(20, 40),
+                Size = new System.Drawing.Size(90, 30),
                 Text = "Export as Text",
                 Name = "txt",
                 UseVisualStyleBackColor = true,
@@ -250,8 +260,8 @@ namespace ecce
 
             Button button_save_xml = new()
             {
-                Location = new System.Drawing.Point(140, 98),
-                Size = new System.Drawing.Size(91, 30),
+                Location = new System.Drawing.Point(130, 40),
+                Size = new System.Drawing.Size(90, 30),
                 Text = "Export as XML",
                 Name = "xml",
                 UseVisualStyleBackColor = true
@@ -259,8 +269,8 @@ namespace ecce
             button_save_xml.Click += new System.EventHandler(this.BtnClickXml!);
 
             Button button_save_csv = new() {
-                Location = new System.Drawing.Point(240, 98),
-                Size = new System.Drawing.Size(91, 30),
+                Location = new System.Drawing.Point(230, 40),
+                Size = new System.Drawing.Size(90, 30),
                 Text = "Export as CSV",
                 Name = "csv",
                 UseVisualStyleBackColor = true
