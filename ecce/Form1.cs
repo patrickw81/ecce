@@ -568,7 +568,7 @@ namespace ecce
                     //var myresponse = await myKi.SendChatGPTRequest(a + " " + article.form_text+ b );
 
                     //article.summary = article.summary + myresponse.ToString();
-                    //my_result_text.myList.summary = "Hier wäre deine Antwort - Sorry ist nicht geöffnet für dich";
+                    
                 }
                 catch (Exception e)
                 {
@@ -588,10 +588,8 @@ namespace ecce
             ResultSegment = new(new ClassOcrTess(pagmode.Text, tesss_mdl.Text, combo_enginemod.Text));
             Task<string> myTaks = ResultSegment.RunOcr(Image!);
             await myTaks;
-            Button button_save_txt = new();
-            Button button_save_xml = new();
-            Button button_save_csv = new();
-            (button_save_txt, button_save_xml, button_save_csv) = ResultSegment!.GetButtons();
+            
+            (Button button_save_txt, Button button_save_xml, Button button_save_csv) = ResultSegment!.GetButtons();
             splitContainer1.Panel2.Controls.Clear();
             splitContainer1.Panel2.Controls.Add(button_save_txt);
             splitContainer1.Panel2.Controls.Add(button_save_xml);
