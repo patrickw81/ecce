@@ -42,24 +42,24 @@ namespace ecce
                     frequency_penalty = 0,
                     presence_penalty = 0
                 };
-                Debug.WriteLine(message);
+                //Debug.WriteLine(message);
 
                 var jsonContent = Newtonsoft.Json.JsonConvert.SerializeObject(requestBody);
                 var httpContent = new StringContent(jsonContent, System.Text.Encoding.UTF8, "application/json");
                
                 var response = await httpClient.PostAsync(apiUrl, httpContent);
-                Debug.WriteLine(jsonContent.ToString());
+                //Debug.WriteLine(jsonContent.ToString());
 
                 var responseJson = await response.Content.ReadAsStringAsync();
-                Debug.WriteLine(responseJson.ToString());
-                Debug.WriteLine("asdasd");
+                //Debug.WriteLine(responseJson.ToString());
+               
                 dynamic responseObject = Newtonsoft.Json.JsonConvert.DeserializeObject(responseJson);
-                Debug.WriteLine("asdasd");
+                
                 string chatGPTResponse = responseObject.choices[0].text;
                 
                
-                Debug.WriteLine(chatGPTResponse);
-                Debug.WriteLine(" war antwort");
+                //Debug.WriteLine(chatGPTResponse);
+                
 
 
                 return chatGPTResponse;
