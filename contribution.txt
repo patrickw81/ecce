@@ -1,0 +1,7 @@
+Emgu.Cv
+https://www.emgu.com/wiki/index.php/Main_Page
+Tesseract
+https://github.com/charlesw/tesseract/
+
+Code Snippets EMGU.CV introduction
+https://www.youtube.com/@TechAJX
