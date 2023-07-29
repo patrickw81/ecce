@@ -4,9 +4,11 @@ Image Preprocess with Emgu.CV and OCR Tesseract for different Tasks. Especially 
 Text Only / File Cards / Catalogues like adressbooks  
 
 Beta Version
-jpg /tiff /png supported
-Languages: eng, deu, Deu Fraktura UB Mannheim, Other languages can be added easily by copying traineddata from Tesseract github 
-Preprocess / Segmenation / Define Areas / Batch Process
+
+- jpg /tiff /png supported
+- Languages: eng, deu, Deu Fraktura UB Mannheim, Other languages can be added easily by copying
+  traineddata from Tesseract github 
+- Preprocess / Segmenation / Define Areas / Batch Process
 
 Preprocess Options:
 - Resize
