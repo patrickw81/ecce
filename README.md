@@ -30,8 +30,8 @@ OCR
 - Teseract
   [Api to Cloud services] not yet implemented
 
-Batch Process
-Save Output as XML / CSV / Txt [Alto not yet implemented]
+Batch Process:
+- Save Output as XML / CSV / Txt [Alto not yet implemented]
 
 In Process:
 - Proof and Correction mode
