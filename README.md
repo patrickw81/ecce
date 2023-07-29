@@ -8,7 +8,7 @@ Beta Version
 - jpg /tiff /png supported
 - Languages: eng, deu, Deu Fraktura UB Mannheim, Other languages can be added easily by copying
   traineddata from Tesseract github 
-- Preprocess / Segmenation / Define Areas / Batch Process
+- Preprocess / Segmentation / Define Areas / Batch Process
 
 Preprocess Options:
 - Resize
