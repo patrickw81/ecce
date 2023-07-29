@@ -1,6 +1,6 @@
 # ecce 1.0.0
 Open Source Project 
-Image Preprocess with Emgu.CV and OCR Tesseract for different Tasks. Especially for archives and libraries
+Image Preprocess with Emgu.CV and OCR Tesseract for different Tasks. Especially for archives and libraries. 
 Text Only / File Cards / Catalogues like adressbooks  
 
 Beta Version
