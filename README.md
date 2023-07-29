@@ -30,11 +30,10 @@ OCR
 - Teseract
   [Api to Cloud services] not yet implemented
 
-  Batch Process
-
+Batch Process
 Save Output as XML / CSV / Txt [Alto not yet implemented]
 
-Work:
+In Process:
 - Proof and Correction mode
 - Grouping Segments with KMeans for better Segmentation and Layout recognition
 - PDF implementation
